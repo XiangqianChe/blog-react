@@ -1,10 +1,14 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import CardPost from "../components/CardPost";
 
 function Home(props) {
     return (
         <Container>
-            <div>This is my home page</div>
+            <div>Latest Post</div>
+            <Row>
+                <CardPost />
+            </Row>
         </Container>
     );
 }
