@@ -5,7 +5,8 @@ import CardPost from "../components/CardPost";
 function Home(props) {
     return (
         <Container>
-            <div>Latest Post</div>
+            <h3>Latest Post</h3>
+            <hr />
             <Row>
                 <CardPost />
             </Row>

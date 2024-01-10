@@ -3,9 +3,11 @@ import { Col, Card, Button } from "react-bootstrap";
 import API from "../utils/API";
 import HashTag from "./HashTag";
 import { trimText } from "../utils/common";
+import { useNavigate } from "react-router-dom";
 
 function CardPost(props) {
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate()
     const getPost = async () => {
         const posts = await API.get("posts");
         //console.log(posts, "---posts");
@@ -16,6 +18,9 @@ function CardPost(props) {
     useEffect(() => {
         getPost();
     }, []);
+    const handleClick = (data) => {
+        navigate('/post', { state: data });
+    };
     return (
         <>
             {posts &&
@@ -28,7 +33,12 @@ function CardPost(props) {
                                     <Card.Text>{trimText(postData.body, 100)}...</Card.Text>
                                     <span><HashTag tags={postData.tags} /></span>
                                     <div></div>
-                                    <Button variant="primary">Read More</Button>
+                                    <Button
+                                        onClick={() => handleClick(postData)}
+                                        variant="primary"
+                                    >
+                                        Read More
+                                    </Button>
                                 </Card.Body>
                             </Card>
                         </Col>
